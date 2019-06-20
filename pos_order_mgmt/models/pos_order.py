@@ -42,7 +42,7 @@ class PosOrder(models.Model):
     @api.model
     def _prepare_fields_for_pos_list(self):
         return [
-            'name', 'pos_reference', 'partner_id', 'date_order',
+            'id', 'name', 'pos_reference', 'partner_id', 'date_order',
             'amount_total', 'amount_paid', 'amount_return', 'session_id',
             'amount_tax', 'statement_ids', 'lines', 'invoice_id',
             'returned_order_id', 'fiscal_position_id'

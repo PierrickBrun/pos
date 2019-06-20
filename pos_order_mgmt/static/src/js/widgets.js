@@ -165,6 +165,14 @@ odoo.define('pos_order_mgmt.widgets', function (require) {
         },
 
         action_print: function (order_data) {
+            var self = this;
+            // If it's invoiced, we just print the invoice
+            if (order_data.origin_invoice_id) {
+                return self.pos.chrome.do_action('point_of_sale.pos_invoice_report', {
+                    additional_context: { active_ids: [order_data.id] }
+                })
+            }
+            // Otherwise, we load the order to generate the ticket
             var order = this.load_order_from_data(order_data, true);
             if (!order) return false;
             // Restore the previous name
